@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { lazy } from 'react'
+import HeroSection from '../components/HeroSection';
+
+const ProductsSection = lazy(() => import('../components/ProductsSection'));
 
 const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
+    return (
+        <>
+            <HeroSection />
+            <ProductsSection />
+        </>
+    )
 }
 
 export default HomePage
