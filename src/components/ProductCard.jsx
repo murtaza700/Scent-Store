@@ -5,19 +5,23 @@ import { motion } from 'motion/react'
 import { useDispatch } from 'react-redux'
 import { increment } from '../features/counterSlice'
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, index }) => {
     const dispatch = useDispatch();
     const [isLiked, setIsLiked] = useState(false);
 
     return (
-        <div className='max-w-[300px] bg-gray-300 p-5 rounded-md m-2 mx-auto relative'>
-            <img className='hover:scale-120 cursor-pointer transition-all duration-300' src={product.image} alt="product image" loading='lazy' />
+        <div className='max-w-[300px] bg-gray-300 p-5 rounded-md m-2 mx-auto relative flex flex-col items-start justify-between'>
+            <Link to={`/product/${index}`}>
+                <img className='hover:scale-120 cursor-pointer transition-all duration-300' src={product.image} alt="product image" loading='lazy' />
+            </Link>
 
-            <div className="text flex items-start justify-start flex-col gap-3">
-                <div className='flex items-center justify-between w-full'>
-                    <h1 className='text-2xl font-semibold'>{product.name}</h1>
-                    <span>{product.price}</span>
-                </div>
+            <div className="text flex items-start justify-start flex-col gap-3 mt-5">
+
+                <Link to={`/product/${index}`}>
+                    <h1 className='text-[20px] font-semibold'>{product.name.slice(0, 30)}{product.name.length > 30 && '...'}</h1>
+                </Link>
+
+                <span>{product.price}</span>
                 <p className='text-sm mb-3'>{product.description.slice(0, 100)}...</p>
             </div>
 

@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedValue = localStorage.getItem('cart');
+
+const initialValue = storedValue ? Number(storedValue) : 0;
+
 const initialState = {
-  value: 0,
+  value: initialValue,
 };
 
 const counterSlice = createSlice({
@@ -10,6 +14,7 @@ const counterSlice = createSlice({
   reducers: {
     increment: (state) => {
       state.value += 1;
+      localStorage.setItem('cart', state.value);
     }
   }
 });
