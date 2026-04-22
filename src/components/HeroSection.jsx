@@ -1,45 +1,79 @@
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 import { slides } from "../../data";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const HeroSection = () => {
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
 
     return (
-        <div className="w-full max-w-6xl mx-auto py-10">
+        <div className="w-full mx-auto relative group">
+
+            <motion.button
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                ref={prevRef}
+                className="hidden md:flex items-center justify-center absolute left-4 top-1/2 z-10 -translate-y-1/2 
+                bg-white/70 hover:bg-white p-2 rounded-full shadow-lg backdrop-blur-md 
+                opacity-0 group-hover:opacity-100 cursor-pointer"
+            >
+                <ChevronLeft size={22} />
+            </motion.button>
+
+            <motion.button
+                whileHover={{ scale: 1.15 }}
+                whileTap={{ scale: 0.9 }}
+                ref={nextRef}
+                className="hidden md:flex items-center justify-center absolute right-4 top-1/2 z-10 -translate-y-1/2 
+                bg-white/70 hover:bg-white p-2 rounded-full shadow-lg backdrop-blur-md 
+                opacity-0 group-hover:opacity-100 cursor-pointer"
+            >
+                <ChevronRight size={22} />
+            </motion.button>
+
             <Swiper
                 modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={20}
+                spaceBetween={0}
                 slidesPerView={1}
-                navigation
-                pagination={{ clickable: true }}
-                autoplay={{ delay: 3000 }}
                 loop={true}
-                className="rounded-2xl overflow-hidden"
+
+                autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false
+                }}
+
+                pagination={{
+                    clickable: true,
+                }}
+
+                navigation={{
+                    prevEl: prevRef.current,
+                    nextEl: nextRef.current,
+                }}
+
+                onBeforeInit={(swiper) => {
+                    swiper.params.navigation.prevEl = prevRef.current;
+                    swiper.params.navigation.nextEl = nextRef.current;
+                }}
+
+                className="overflow-hidden"
             >
                 {slides.map((slide) => (
                     <SwiperSlide key={slide.id}>
-                        <div className="relative h-[400px] md:h-[500px] w-full">
+                        <div className="relative w-full">
+
                             <img
                                 src={slide.img}
                                 alt={slide.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-auto object-cover"
                             />
 
-                            {/* Overlay */}
-                            <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center px-4">
-                                <h2 className="text-white text-2xl md:text-4xl font-bold">
-                                    {slide.title}
-                                </h2>
-                                <p className="text-gray-200 mt-2 md:text-lg">
-                                    {slide.desc}
-                                </p>
-                                <button className="mt-4 px-6 py-2 bg-white text-black rounded-lg hover:bg-gray-200 transition">
-                                    Explore
-                                </button>
-                            </div>
                         </div>
                     </SwiperSlide>
                 ))}

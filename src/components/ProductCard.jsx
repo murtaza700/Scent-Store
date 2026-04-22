@@ -2,9 +2,11 @@ import { Heart, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'motion/react'
+import { useDispatch } from 'react-redux'
+import { increment } from '../features/counterSlice'
 
 const ProductCard = ({ product }) => {
-
+    const dispatch = useDispatch();
     const [isLiked, setIsLiked] = useState(false);
 
     return (
@@ -18,12 +20,14 @@ const ProductCard = ({ product }) => {
                 </div>
                 <p className='text-sm mb-3'>{product.description.slice(0, 100)}...</p>
             </div>
-            <Link className='flex items-center justify-center gap-2 bg-blue-700 text-white w-full py-2 rounded-md' to={`/product/1`}>Cart <ShoppingCart /></Link>
+
+            <button onClick={() => dispatch(increment())} className='flex items-center justify-center gap-2 cursor-pointer bg-blue-700 hover:bg-blue-800 text-white w-full py-2 rounded-md transition-colors duration-300'>Cart <ShoppingCart /></button>
 
             <motion.button
                 whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setIsLiked(!isLiked)}
-                className='absolute right-5 top-5 bg-red-600/20 text-red-600 h-8 w-8 flex items-center justify-center rounded-full cursor-pointer'
+                className='absolute right-4 top-4 bg-red-600/10 text-red-600 h-8 w-8 flex items-center justify-center rounded-full cursor-pointer'
             >
                 {
                     isLiked

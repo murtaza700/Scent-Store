@@ -35,31 +35,31 @@ export const productsData = [
     {
         name: 'name',
         description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde incidunt similique sunt enim in debitis accusamus eveniet, harum ipsam facere vel asperiores consectetur alias facilis explicabo illum repellendus nulla modi?',
-        price: 'price',
+        price: '$17',
         image: '/Perfume-Images/image3.png'
     },
     {
         name: 'name',
         description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde incidunt similique sunt enim in debitis accusamus eveniet, harum ipsam facere vel asperiores consectetur alias facilis explicabo illum repellendus nulla modi?',
-        price: 'price',
+        price: '$29',
         image: '/Perfume-Images/image4.png'
     },
     {
         name: 'name',
         description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde incidunt similique sunt enim in debitis accusamus eveniet, harum ipsam facere vel asperiores consectetur alias facilis explicabo illum repellendus nulla modi?',
-        price: 'price',
+        price: '$35',
         image: '/Perfume-Images/image5.png'
     },
     {
         name: 'name',
-        description: 'description',
-        price: 'price',
+       description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde incidunt similique sunt enim in debitis accusamus eveniet, harum ipsam facere vel asperiores consectetur alias facilis explicabo illum repellendus nulla modi?',
+        price: '$13',
         image: '/Perfume-Images/image6.png'
     },
     {
         name: 'name',
-        description: 'description',
-        price: 'price',
+        description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde incidunt similique sunt enim in debitis accusamus eveniet, harum ipsam facere vel asperiores consectetur alias facilis explicabo illum repellendus nulla modi?',
+        price: '$28',
         image: '/Perfume-Images/image7.png'
     }
 ]
