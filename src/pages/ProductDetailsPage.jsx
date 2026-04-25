@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { productsData } from '../../data';
 import { useParams } from 'react-router-dom';
+import { ShoppingCart } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { increment } from '../features/counterSlice';
 
 const ProductDetailsPage = () => {
+  const dispatch = useDispatch();
+
   const { id } = useParams();
   const index = Number(id);
   const [product, setProduct] = useState();
@@ -21,16 +26,22 @@ const ProductDetailsPage = () => {
   }
 
   return (
-    <div className='relative flex items-start justify-start flex-col md:flex-row'>
+    <div className='relative flex items-center justify-start flex-col gap-5 md:flex-row px-[7%] md:px-[7%] mx-auto mt-8'>
 
-      <div className='left w-1/2'>
-        <img src={product.image} alt="Product Image" />
+      <div className='left md:w-[40%] w-full'>
+        <img className='w-full' src={product.image} alt="Product Image" />
       </div>
 
-      <div className='right w-1/2'>
-        <h1 className='text-4xl font-medium'>{product.name}</h1>
-        <p>{product.description}</p>
+      <div className='right md:w-[50%] w-full'>
+        <h1 className='text-4xl font-[600] mb-3'>{product.name}</h1>
+        <p className=''>{product.description}</p>
+
+        <div className="btns mt-3">
+          <button className='flex items-center justify-center gap-2 bg-blue-700 text-white px-5 py-2 rounded-md cursor-pointer' onClick={() => dispatch(increment())}>Add To Cart <ShoppingCart /></button>
+        </div>
+
       </div>
+
 
     </div>
   )
